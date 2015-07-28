@@ -20,26 +20,30 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+
   </head>
   <body ng-app="starter">
-
+    {{hello}}
     <ion-pane>
       <ion-content>
-      <form ng-submit="createTask(task)">
+      <form novalidate class="task-form" ng-submit="createTask()" ng-controller="FormCtrl">
           <label class="item item-input">
             <span class="input-label">Day</span>
-            <input type="text">
+            <input ng-model="task.day" type="text">
           </label>
            <label class="item item-input">
-            <span class="input-label">Task</span>
-            <input type="text">
+            <span class="input-label">Title</span>
+            <input ng-model="task.title" type="text">
           </label>
           <label class="item item-input">
             <span class="input-label">Priority</span>
-            <input type="number">
+            <input ng-model="task.prority" type="number">
           </label>
           <div class="padding">
-           <button type="submit" class="button button-block button-positive">Add task </button>
+           <button type="submit" class="button button-block button-positive">Add task</button>
         </div>
       </form>
       </ion-content>
