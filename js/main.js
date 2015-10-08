@@ -3,17 +3,15 @@ var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satur
 var weeklyTasks = [];
 var tasksForWeek;
 function runMainProgram() {	
-	var tempArray = [];
 	tasksForWeek = to_dos['to-dos'];
 	for (var i = 0; i < daysOfWeek.length; i++) {
-		tempArray.push(tasksForWeek.filter(function(obj) {
+		weeklyTasks.push(tasksForWeek.filter(function(obj) {
 			if (obj.dayOfWeek === daysOfWeek[i]) {
 				return obj;
 			}
 		}));
-		weeklyTasks[i] = tempArray;
-		tempArray = [];
 	}
+	//console.log(JSON.stringify(weeklyTasks));
 	for (var i = 0; i < weeklyTasks.length; i++) {
 		console.log(JSON.stringify(weeklyTasks[i]));
 	}
