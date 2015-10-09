@@ -2,11 +2,19 @@
 <head>
 	<title>On My Radar</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+	<script src="js/raphael-min.js" charset="utf-8"></script>
 	<script src="js/main.js" charset="utf-8"></script>
 </head>
+<style>
+	#visualization {
+		background-color: red;
+	}
+</style>
 <body>
 	<div id="container">
+		<button id="start-visual">Visualize</button>
+		<div id="visualization">
+		</div>
 	</div>
 </body>
 
