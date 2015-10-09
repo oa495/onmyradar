@@ -1,11 +1,12 @@
 
 var to_dos = {};
-var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+var areaOfScreenForDay = {}
 var weeklyTasks = {};
-var tasksForWeek;
-var ready;
-var allCircles = [];
-var paper;
+var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+var ready, paper;
+var taskCircles = [];
+var dayCircles = [];
+
 function runMainProgram() {	
 	var tempArray = [];
 	tasksForWeek = to_dos['to-dos'];
@@ -16,13 +17,23 @@ function runMainProgram() {
 			}
 		});
 		weeklyTasks[daysOfWeek[i]] = tempArray;
+		areaOfScreenForDay[daysOfWeek[i]] = Math.random() * Math.PI * 2;
 		tempArray = [];
 	}
 	//console.log(JSON.stringify(weeklyTasks));
 	/*for (var j = 0; j < daysOfWeek.length; j++) {
 		console.log(JSON.stringify(weeklyTasks[daysOfWeek[j]]));
-	}*/
+	}
+	for (var n = 0; n < daysOfWeek.length; n++) {
+		console.log(areaOfScreenForDay[daysOfWeek[n]]);
+	} */
 	ready = true;
+}
+function getRandomPoint(radius, angle) {
+    return {
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius
+    };
 }
 
 $.ajax({
@@ -53,8 +64,12 @@ function startVisualization() {
 		console.log('visualization started!');
 		 paper = new Raphael(document.getElementById('visualization'), 1200, 850);
 		 // dow = day of week
+		 var dayRadius = 400;
+		 	var centerX = paper.canvas.offsetWidth/2+150;
+			var centerY = paper.canvas.offsetHeight/2; 
 		 for (var dow in weeklyTasks) {
 			  if (weeklyTasks.hasOwnProperty(dow)) {
+			  	 dayCircles.push(paper.circle(centerX, centerY, dayRadius-=50));
 		   		 drawTaskCircles(dow);
 		  	}
 		}
@@ -63,17 +78,9 @@ function startVisualization() {
 
 
 function drawTaskCircles(dow) {
-	var x, y = 200;
+	var points;
 	var tasksForWeek = weeklyTasks[dow];
 	for (var i = 0; i < tasksForWeek.length; i++) {
 		var tasksForDay = tasksForWeek[i];
-		for (var task in tasksForDay ) {
-			var priority = tasksForDay.priority*20;
-			x += Math.random() * (800 - 60) + 60;
-			y += Math.random() * (680 - 80) + 80;
-			allCircles.push(paper.circle(x, y, priority));
-			x = 200;
-			y = 200;
-		}
 	}
 }
