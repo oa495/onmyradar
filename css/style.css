@@ -30,7 +30,7 @@ filter: dropshadow(color=#000000, offx=1, offy=1);
 font-family: Helvetica, Arial, sans-serif;
 }
 .app-headline {
-color: #999;
+color: #000000;
 font-size: 15px;
 
 }
@@ -41,11 +41,11 @@ margin-top: 40px;
 
 .done-true {
 text-decoration: line-through;
-color: grey;
+color: black;
 }
 
 .archive-control {
-border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+/*border-bottom: 1px solid rgba(0, 0, 0, 0.1);*/
 height: 22px;
 line-height: 22px;
 padding: 5px 0px 5px 10px;

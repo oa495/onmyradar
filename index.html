@@ -26,7 +26,7 @@
 	<section class="app-body">
 		<section class="archive-control">
 			<span>{{ remaining() }} of {{ todos.length }} remaining</span>
-			<p>[ <a href="" data-ng-click="archive()">Remove Completed Items</a> ]</p>
+			<p>[ <a href="" data-ng-click="archive()">Remove Completed Tasks</a> ]</p>
 		</section>
 
 		<ul class="unstyled">
@@ -37,7 +37,7 @@
 		</ul>
 
 		<form data-ng-submit="addTodo()" class="todo-form">
-			<input type="text" data-ng-model="todoText" placeholder="Enter new ToDo item" />
+			<input type="text" data-ng-model="todoText" placeholder="Put a new task on your radar" />
 			<br />
 			<input type="submit" value="Add Task" />
 		</form>
