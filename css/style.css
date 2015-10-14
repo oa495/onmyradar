@@ -15,9 +15,9 @@ margin: 0px auto;
 
 .app-header {
 text-align: center;
-border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-height: 40px;
-background: #336699;
+/*border-bottom: 1px solid rgba(0, 0, 0, 0.1);*/
+height: 5px;
+background: #8fe731;
 }
 .app-title {
 font-size: 28px;

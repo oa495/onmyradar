@@ -1,6 +1,6 @@
 function TodoController ($scope) {
-	$scope.appTitle = "On My Radar";
-	$scope.appHeadline = "My to-do List";
+	$scope.appTitle;
+	$scope.appHeadline;
 	$scope.saved = localStorage.getItem('todos');
 	$scope.todos = (localStorage.getItem('todos')!==null) ? JSON.parse($scope.saved) : [ {text: 'Learn AngularJS', done: false}, {text: 'Build an Angular app', done: false} ];
 	localStorage.setItem('todos', JSON.stringify($scope.todos));
