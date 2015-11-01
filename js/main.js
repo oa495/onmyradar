@@ -85,7 +85,14 @@ function drawTaskCircles(dow, radius, centerX, centerY) {
 		priority = tasksForDay[i].priority;
 		var x = points.x;
 		var y = points.y;
-		allWeek[dow].taskCircles.push(paper.circle(x, y, priority*4).red()); 
+		allWeek[dow].taskCircles.push(paper.circle(x, y, priority*4)
+			.attr({fill: "#000"})
+			.data("title", tasksForDay[i].title)
+			.data("description", tasksForDay[i].description)
+	        .click(function () {
+	            alert(this.data("title"));
+	        })
+		); 
 	} 
 }
 
@@ -96,6 +103,3 @@ function getRandomPoint(radius, centerX, centerY, i, items) {
         y: centerY + radius * Math.sin(angle) 
     };
 }
-Raphael.el.red = function () {
-    this.attr({fill: "#f00"});
-};
