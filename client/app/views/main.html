@@ -1,12 +1,10 @@
-<div ng-controller="TodoCtrl" class="jumbotron text-center">
+<!-- <div ng-controller="TodoCtrl" class="jumbotron text-center">
   <h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
 </div>
 
-<!-- TODO LIST -->
 <div id="todo-list" class="row">
   <div class="col-sm-4 col-sm-offset-4">
 
-      <!-- LOOP OVER THE TODOS IN $scope.todos -->
       <div class="checkbox" ng-repeat="todo in todos">
           <label>
               <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
@@ -16,18 +14,48 @@
   </div>
 </div>
 
-<!-- FORM TO CREATE TODOS -->
+FORM TO CREATE TODOS 
 <div id="todo-form" class="row">
   <div class="col-sm-8 col-sm-offset-2 text-center">
       <form>
           <div class="form-group">
-
-              <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-              <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+              BIND THIS VALUE TO formData.text IN ANGULAR
+              Title <input type="text" class="form-control input-lg text-center" ng-model="formData.text">
+              Priority (1 - 5)<input type="number" class="form-control input-lg text-center" ng-model="formData.priority">
+              Description<input type="text" class="form-control input-lg text-center" ng-model="formData.description">
+              Day of Week <input type="text" class="form-control input-lg text-center" ng-model="formData.dayOfWeek">
           </div>
 
-          <!-- createToDo() WILL CREATE NEW TODOS -->
+           createToDo() WILL CREATE NEW TODOS 
           <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
       </form>
   </div>
+</div>
+-->
+
+<div class="container" data-ng-controller="TodoCtrl">
+  <header class="app-header">
+    <h1 class="app-title">{{ appTitle }}</h1>
+    <h1 class="app-headline">{{ appHeadline }}</h1>
+  </header>
+
+  <section class="app-body">
+    <section class="archive-control">
+      <span>{{ remaining() }} of {{ todos.length }} remaining</span>
+      <p>[ <a href="" data-ng-click="archive()">Remove Completed Items</a> ]</p>
+    </section>
+
+    <ul class="unstyled">
+      <li data-ng-repeat="todo in todos track by $index">
+        <input type="checkbox" data-ng-model="todo.done">
+        <span class="done-{{ todo.done }}">{{ todo.text }}</span>
+      </li>
+    </ul>
+
+    <form data-ng-submit="addTodo()" class="todo-form">
+      <input type="text" data-ng-model="todoText" placeholder="Enter new ToDo item" />
+      <br />
+      <input type="submit" value="Add Task" />
+    </form>
+  </section>
 </div>

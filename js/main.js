@@ -1,14 +1,13 @@
 "use strict";
 
 var to_dos = {}; //stores json data from the ajax call
-var allWeek = {}; //storing all the tasks for the week
+var allWeek = {};  //objects that represents everything in a week
 var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 var ready, paper;
-var tasksForWeek;
+var tasksForWeek; //storing all the tasks for the week
 //paper is the object rapahel uses to draw to the screen
 // ready determines if the visualization can start
- //objects that represents a day with tasks
-var dayCircles = {};
+
 
 function runMainProgram() {	
 	var tempArray = []; //temporarily stores the tasks that correspond to a day of the week
@@ -21,6 +20,7 @@ function runMainProgram() {
 			}
 		});
 		dayRadius-=50; //drawing circles that are smaller than the one before (like a radar)
+		//for each day in the week, there are tasks, a radius to draw a circle and a list of tasks to do 
 		allWeek[daysOfWeek[i]] = {
 			tasks: tempArray,
 			dayRadius: dayRadius,
