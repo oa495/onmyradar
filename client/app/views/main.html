@@ -1,23 +1,33 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div ng-controller="TodoCtrl" class="jumbotron text-center">
+  <h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
 </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+<!-- TODO LIST -->
+<div id="todo-list" class="row">
+  <div class="col-sm-4 col-sm-offset-4">
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+      <!-- LOOP OVER THE TODOS IN $scope.todos -->
+      <div class="checkbox" ng-repeat="todo in todos">
+          <label>
+              <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+          </label>
+      </div>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+  </div>
+</div>
+
+<!-- FORM TO CREATE TODOS -->
+<div id="todo-form" class="row">
+  <div class="col-sm-8 col-sm-offset-2 text-center">
+      <form>
+          <div class="form-group">
+
+              <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+              <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+          </div>
+
+          <!-- createToDo() WILL CREATE NEW TODOS -->
+          <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+      </form>
+  </div>
 </div>
