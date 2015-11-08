@@ -17,7 +17,7 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch', 'todoService'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -25,6 +25,11 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/radar', {
+        templateUrl: 'views/radar.html',
+        controller: 'RadarCtrl',
+        controllerAs: 'radar'
       })
       .otherwise({
         redirectTo: '/'

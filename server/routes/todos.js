@@ -58,7 +58,7 @@ router.delete('/todos/:todo_id', function(req, res) {
     });
 });
 
-router.get('/', function(req, res) {
+router.get('*', function(req, res) {
 	res.sendFile('./client/app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
 module.exports = router;

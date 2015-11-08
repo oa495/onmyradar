@@ -5,8 +5,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
 var todos = require('./routes/todos');
 
 var app = express();
@@ -26,7 +24,6 @@ if (app.get('env') === 'development') {
     // This covers serving up the index page
     app.use(express.static(path.join(__dirname, '../client/.tmp')));
     app.use(express.static(path.join(__dirname, '../client/app')));
-    app.use('/', routes);
     app.use('/api', todos);
     // Error Handling
     app.use(function(err, req, res, next) {
@@ -46,7 +43,6 @@ if (app.get('env') === 'production') {
     // changes it to use the optimized version for production
     app.use(express.static(path.join(__dirname, '/dist')));
 
-    app.use('/', routes);
     app.use('/api', todos);
     // production error handler
     // no stacktraces leaked to user
