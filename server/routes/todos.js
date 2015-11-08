@@ -22,8 +22,11 @@ router.post('/todos', function(req, res) {
     console.log('creating');
     // create a todo, information comes from AJAX request from Angular
     Todo.create({
-        text : req.body.text,
-        done : false
+        title: req.body.title,
+        priority: req.body.priority,
+        dayOfWeek: req.body.dayOfWeek,
+        description: req.body.description,
+        done: false
     }, function(err, todo) {
         if (err)
             res.send(err);

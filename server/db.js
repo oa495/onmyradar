@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
 
 // my schema goes here!
 var Todo = new mongoose.Schema({
-  text: String,
+  title: String,
+  priority: Number,
+  dayOfWeek: String,
+  description: String,
   done: Boolean
 });
 
