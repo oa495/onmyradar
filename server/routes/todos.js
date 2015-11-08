@@ -19,6 +19,7 @@ router.get('/todos', function(req, res) {
 
 // create todo and send back all todos after creation
 router.post('/todos', function(req, res) {
+    console.log('creating');
     // create a todo, information comes from AJAX request from Angular
     Todo.create({
         text : req.body.text,
