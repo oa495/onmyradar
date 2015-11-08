@@ -9,7 +9,7 @@
  */
 angular.module('clientApp')
   .controller('TodoCtrl', function ($scope, $http) {
-    $scope.appTitle;
+    /*$scope.appTitle;
     $scope.appHeadline;
     $scope.saved = localStorage.getItem('todos');
     $scope.todos = (localStorage.getItem('todos')!==null) ? JSON.parse($scope.saved) : [ {text: 'Learn AngularJS', done: false}, {text: 'Build an Angular app', done: false} ];
@@ -41,21 +41,22 @@ angular.module('clientApp')
         });
         localStorage.setItem('todos', JSON.stringify($scope.todos));
     };
-    /*
+    */
     $scope.formData = {};
 
     // when landing on the page, get all todos and show them
-    $http.get('/api/todos')
+     $http.get('/api/todos')
         .success(function(data) {
             $scope.todos = data;
-            console.log(data);
+            console.log("data?", data);
         })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
+    .error(function(data) {
+        console.log('Error from todo.js: ' + data);
+    });
 
     // when submitting the add form, send the text to the node API
     $scope.createTodo = function() {
+        console.log("create to do");
         $http.post('/api/todos', $scope.formData)
             .success(function(data) {
                 $scope.formData = {}; // clear the form so our user is ready to enter another
@@ -69,6 +70,7 @@ angular.module('clientApp')
 
     // delete a todo after checking it
     $scope.deleteTodo = function(id) {
+         console.log("delete to do");
         $http.delete('/api/todos/' + id)
             .success(function(data) {
                 $scope.todos = data;
@@ -77,5 +79,5 @@ angular.module('clientApp')
             .error(function(data) {
                 console.log('Error: ' + data);
             });
-    };*/
+     };
   });
