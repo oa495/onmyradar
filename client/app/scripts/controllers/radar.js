@@ -1,0 +1,92 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name clientApp.controller:RadarCtrl
+ * @description
+ * # RadarCtrl
+ * Controller of the clientApp
+ */
+angular.module('clientApp')
+  .controller('RadarCtrl', function (Todos) {
+	  	var to_dos = {}; //stores json data from the ajax call
+		var allWeek = {};  //objects that represents everything in a week
+		var daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+		var paper;
+		var tasksForWeek; //storing all the tasks for the week
+		//paper is the object rapahel uses to draw to the screen
+		// ready determines if the visualization can start
+		var size = {
+		  width: window.innerWidth || document.body.clientWidth,
+		  height: window.innerHeight || document.body.clientHeight
+		}
+		Todos.get()
+        .success(function(data) {
+            	to_dos = data; //store the data returned in to_dos
+            	console.log(to_dos);
+				console.log ('got it, move along'); 
+				runMainProgram(); //start the program 
+        });
+		function runMainProgram() {	
+			var tempArray = []; //temporarily stores the tasks that correspond to a day of the week
+			tasksForWeek = to_dos;
+			var dayRadius = 400; 
+			for (var i = 0; i < daysOfWeek.length; i++) { //loop over days of the week
+				tempArray = tasksForWeek.filter(function(obj) { //getting all the tasks for that day of the week
+					if ((obj.dayOfWeek).toLowerCase() === daysOfWeek[i]) {
+						return obj;
+					}
+				});
+				dayRadius-=50; //drawing circles that are smaller than the one before (like a radar)
+				//for each day in the week, there are tasks, a radius to draw a circle and a list of tasks to do 
+				allWeek[daysOfWeek[i]] = {
+					tasks: tempArray,
+					dayRadius: dayRadius,
+					taskCircles: []
+				};
+				tempArray = [];
+			}
+			startVisualization();
+		}
+		function startVisualization() {
+			 paper = new Raphael(document.getElementById('visualization'), size.width, size.height);
+			 // dow = day of week
+			 	var centerX = paper.width/4+50; //get center of page
+				var centerY = paper.height/2; 
+			 for (var dow in allWeek) {
+				  if (allWeek.hasOwnProperty(dow)) {
+				  	 allWeek.dayCircle = paper.circle(centerX, centerY, allWeek[dow].dayRadius);
+			   		 drawTaskCircles(dow, allWeek[dow].dayRadius, centerX, centerY);
+			  	}
+			}
+		}
+
+
+		function drawTaskCircles(dow, radius, centerX, centerY) {
+			var points;
+			var priority;
+			var tasksForDay = allWeek[dow].tasks;
+			for (var i = 0; i < tasksForDay.length; i++) {
+				points = getRandomPoint(radius, centerX, centerY, i, tasksForDay.length);
+				priority = tasksForDay[i].priority;
+				var x = points.x;
+				var y = points.y;
+				allWeek[dow].taskCircles.push(paper.circle(x, y, priority*4)
+					.attr({fill: "#000"})
+					.data("title", tasksForDay[i].title)
+					.data("description", tasksForDay[i].description)
+			        .click(function () {
+			            alert(this.data("title"));
+			        })
+				); 
+			} 
+		}
+
+		function getRandomPoint(radius, centerX, centerY, i, items) {
+			var angle = Math.random() * Math.PI * 2;
+		    return {
+		        x: centerX + radius * Math.cos(angle),
+		        y: centerY + radius * Math.sin(angle) 
+		    };
+		}
+  });
