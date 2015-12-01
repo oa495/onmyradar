@@ -5,8 +5,11 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/png" href="img/radar.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles/main.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
     <!--<base href="/">-->
   </head>
   <body ng-app="clientApp">
@@ -15,7 +18,10 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-
+    <header>
+        <img src="img/radar.png" width="32">
+        <h2>On my Radar</h2>
+    </header>
     <div class="container">
     <div ng-view=""></div>
     </div>
@@ -33,16 +39,16 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/raphael/raphael-min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="js/raphael-min.js"></script>
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/todo.js"></script>
         <script src="scripts/controllers/radar.js"></script>
         <script src="scripts/services/todos.js"></script>
+        <script src="scripts/controllers/user.js"></script>
         <!-- endbuild -->
 </body>
 </html>
