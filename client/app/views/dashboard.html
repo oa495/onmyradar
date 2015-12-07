@@ -1,8 +1,4 @@
 <div class="dashboard">
-    <h3 class="panel-title">{{loggeduser.firstname}} {{loggeduser.lastname}}</h3>
-    <!--<div class="">
-        <span class="label label-info">{{ todos.length }}</span>
-    </div> -->
     <section class="submit-form">
         <div>
             <form name="taskinput" novalidate ng-submit="createTodo()">
@@ -37,11 +33,20 @@
         </div>
     </section>
     <section class="list">
-        <div>
-            <div class="checkbox" ng-repeat="todo in todos">
+        <div class="todos">
+            <div class="checkbox" ng-repeat="todo in todos" ng-click="showSidebar(todo)">
                 <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.title }}
             </div>
             <a href="#/radar"><button class="hvr-outline-out">Visualize</button></a>
         </div>
+        <section class="sidebar">
+            <img class="close" src="img/close33.png">
+            <div class="details">
+                <div>Title: {{currentTodo.title}}</div>
+                <div>Priority: {{currentTodo.priority}}</div>
+                <div>Description: {{currentTodo.description}}</div>
+                <div>Day Of Week: {{currentTodo.dayOfWeek}}</div>
+            </div>
+        </section>
     </section>
 </div>

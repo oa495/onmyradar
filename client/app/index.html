@@ -18,9 +18,15 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <header>
-        <img src="img/radar.png" width="32">
-        <h2>On my Radar</h2>
+    <header ng-controller="HeaderCtrl">
+        <div class="left">
+            <img src="img/radar.png" width="32">
+            <h2>On my Radar</h2>
+        </div>
+        <div ng-show="{{userLoggedIn}}" class="right">
+             <p class="panel-title">Hi {{name}} !</p>
+             <button class="logout" ng-click="logout()">Logout</button>
+        </div>
     </header>
     <div class="container">
     <div ng-view=""></div>
@@ -39,6 +45,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -49,6 +56,8 @@
         <script src="scripts/controllers/radar.js"></script>
         <script src="scripts/services/todos.js"></script>
         <script src="scripts/controllers/user.js"></script>
+        <script src="scripts/controllers/header.js"></script>
+        <script src="scripts/services/userinfo.js"></script>
         <!-- endbuild -->
 </body>
 </html>

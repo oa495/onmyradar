@@ -45,9 +45,6 @@ angular.module('clientApp')
                         $scope.todos = data; // assign our new list of todos
                     });
             }
-            else {
-
-            }
         };
 
         // DELETE ==================================================================
@@ -62,4 +59,14 @@ angular.module('clientApp')
                     $scope.todos = data; // assign our new list of todos
                 });
         };
+
+        $scope.showSidebar = function(todo) {
+            $scope.currentTodo = todo;
+            if ($('.sidebar').css('display') === 'none') {
+                $('.sidebar').show();
+            }
+        };
+        $('.close').click(function() {
+            $('.sidebar').hide();
+        });
   });

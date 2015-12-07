@@ -17,8 +17,12 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
+    'ngStorage',
     'ngTouch', 'todoService'
   ])
+  /*
+  .factory('user', function() {
+  })*/
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
       // Initialize a new promise
@@ -81,11 +85,6 @@ angular
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'UserCtrl',
-        controllerAs: 'user'
-      })
-      .when('/register', {
-        templateUrl: 'views/register.html',
         controller: 'UserCtrl',
         controllerAs: 'user'
       })

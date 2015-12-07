@@ -3,6 +3,7 @@
 html, body {
 	margin: 0;
 	padding: 0;
+	overflow: hidden;
 }
 h1 {
   font-family: $heading-font;
@@ -12,20 +13,53 @@ a {
 	color: black;
 	text-decoration: none;
 }
+button {
+	background-color: $grey;
+	clear: both;
+    position: relative;
+    top: 50px;
+    cursor:pointer;
+    border: 8px solid white;
+    width:120px;
+    height:50px;
+    margin-left: 35%;
+    font-size: 12px;
+    color: black;
+    font-family: $body-font;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+input:focus {
+	outline: none;
+}
 header {
-	padding-left: 10px;
 	padding-bottom: 15px;
 	background-color: white;
 	height: 50px;
 	width: 100%;
 	position: fixed;
-	img, h2 {
+
+	img, h2, p, button {
 		display: inline-block;
 		position: relative;
 		padding: 2px;
 	}
-	img {
+	.left {
+		margin-left: 10px;
+		float: left;
+	}
+	.right {
+		float: right;
+		margin-right: 20px;
+	}
+	div > img {
 		top: 10px;
+	}
+	button {
+		clear: none;
+		top:0px;
+		margin-left: 0;
 	}
 }
 body {
@@ -35,6 +69,56 @@ body {
 .container {
   width: 100%;
   height: 100%;
+}
+.auth {
+	width: 450px;
+	height: 400px;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: $green1;
+	h3 {
+		background-color: $blue1;
+		height: 45px;
+		font-size: 20px;
+		padding-top: 10px;
+	}
+	h3, p {
+		text-align: center;
+	}
+	small {
+		text-align: center;
+		color: white;
+		width: 100%;
+		display: inline-block;
+		margin: 0 auto;
+	}
+	p {
+		color: white;
+		padding-top: 20px;
+		cursor: pointer;
+	}
+	p:hover {
+		opacity: 0.8;
+	}
+	.signup {
+		display: none;
+	}
+	form {
+		div {
+			padding: 15px;
+		}
+		input {
+			height: 50px;
+			display: block;
+			width: 85%;
+			margin: 0 auto;
+			font-family: $body-font;
+			font-size: 14px;
+		}
+		button {
+			top: 20px;
+		}
+	}
 }
 .dashboard {
 	height: 100vh;
@@ -69,19 +153,29 @@ body {
 	    .checkbox:hover {
 	    	opacity: 0.8;
 	    }
-	    button {
+	    .todos {
+	    	float: left;
+	    }
+	    .sidebar {
+	    	position: absolute;
+	    	width: 30%;
+	        height: 100%;
 	    	background-color: $grey;
-	    	clear: both;
-	        position: relative;
-		    top: 50px;
-		    cursor:pointer;
-		    border: 8px solid white;
-		    width:120px;
-		    height:50px;
-		    margin-left: 35%;
-		    font-size: 12px;
-		    color: black;
-		    font-family: $body-font;
+	    	right: 0px;
+	    	margin-top: 65px;
+	    	display: none; 
+	    	.details {
+	    		margin-top: 40px;
+	    	}
+	    	.details > div {
+	    		margin-top: 10px;
+	    		background-color: transparent;
+	    		background: transparent;
+	    	}
+	    	img {
+	    		float: right;
+	    		padding: 10px;
+	    	}
 	    }
 	}
 	.submit-form {
@@ -124,6 +218,7 @@ body {
 }
 .help-block {
 	width: 130px;
+	margin-left: 15px;
 }
 .help-block > small {
 	display: inline;
@@ -161,4 +256,8 @@ body {
   right: -8px;
   bottom: -8px;
   left: -8px;
+}
+
+@media screen and (max-device-width: 320px) {
+  .sideb
 }

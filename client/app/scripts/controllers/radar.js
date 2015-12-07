@@ -32,10 +32,6 @@ angular.module('clientApp')
 		var tasksForWeek; //storing all the tasks for the week
 		//paper is the object rapahel uses to draw to the screen
 		// ready determines if the visualization can start
-		var size = {
-		  width: window.innerWidth || document.body.clientWidth,
-		  height: window.innerHeight || document.body.clientHeight
-		};
 		Todos.get()
         .success(function(data) {
             	to_dos = data; //store the data returned in to_dos
@@ -47,12 +43,14 @@ angular.module('clientApp')
 			var tempArray = []; //temporarily stores the tasks that correspond to a day of the week
 			tasksForWeek = to_dos;
 			var dayRadius = 400; 
-			for (var i = 0; i < daysOfWeek.length; i++) { //loop over days of the week
-				tempArray = tasksForWeek.filter(function(obj) { //getting all the tasks for that day of the week
-					if ((obj.dayOfWeek).toLowerCase() === daysOfWeek[i]) {
+			function getTasksForDOW(obj) {
+				if ((obj.dayOfWeek).toLowerCase() === daysOfWeek[i]) {
 						return obj;
-					}
-				});
+				}
+			}
+			for (var i = 0; i < daysOfWeek.length; i++) { //loop over days of the week
+				tempArray = tasksForWeek.filter(getTasksForDOW);
+				//getting all the tasks for that day of the week
 				dayRadius-=50; //drawing circles that are smaller than the one before (like a radar)
 				//for each day in the week, there are tasks, a radius to draw a circle and a list of tasks to do 
 				allWeek[daysOfWeek[i]] = {
@@ -62,6 +60,7 @@ angular.module('clientApp')
 				};
 				tempArray = [];
 			}
+			
 			startVisualization();
 		}
 		function createElement(element, text, attributes, child) {
@@ -111,43 +110,43 @@ angular.module('clientApp')
 			var tasksForDay = allWeek[dow].tasks;
 			allWeek[dow].taskCircles = [];
 			var set = paper.set();
+			var size;
+			var labelize = function (shape, label) {
+				paper.setStart();
+				var theLabel = paper.text(shape.attr("cx")+ shape.attr('r')*6, shape.attr("cy"), " " + label + " ").attr({
+					'font-size': 13, 'fill': '#ffffff', 'font-family': 'Lato, sans-serif'
+				});
+				theLabel.node.setAttribute('class', "task-text");
+				var box = theLabel.getBBox();
+				var rect = paper.rect(box.x, box.y, box.width, box.height).attr('fill', 'black');
+				rect.node.setAttribute('class', 'text-box');
+				theLabel.toFront();
+				var st = paper.setFinish();
+
+				shape.data("label", st);
+
+				var hoverIn = function() {
+					this.animate({"fill-opacity": 0.9, fill: "#00BCD1", stroke: "#fff", "stroke-width": 20, "stroke-opacity": 0.7 }, 1000);
+					this.data("label").show();
+				};
+				var hoverOut = function() {
+					this.animate({"fill-opacity": 1, fill: "#fff", stroke: "#00BCD1", "stroke-width": size*1.1, "stroke-opacity": 1 }, 1000);
+					this.data("label").hide();
+				};
+				shape.data("label").hide();
+				shape.hover(hoverIn, hoverOut, shape, shape);
+				return shape;
+			};
+
 			for (var i = 0; i < tasksForDay.length; i++) {
 				points = getRandomPoint(radius, centerX, centerY);
 				priority = tasksForDay[i].priority;
 				var x = points.x;
 				var y = points.y;
-				var size = priority*4.5;
+				size = priority*4.5;
 				var circ = paper.circle(x, y, size).data("title", tasksForDay[i].title);
 				circ.data("description", tasksForDay[i].description);
-				circ.node.setAttribute('class', "circle");
-
-				var labelize = function (shape, label) {
-					paper.setStart();
-					var theLabel = paper.text(shape.attr("cx")+ shape.attr('r')*6, shape.attr("cy"), " " + label + " ").attr({
-						'font-size': 13, 'fill': '#ffffff', 'font-family': 'Lato, sans-serif'
-					});
-					theLabel.node.setAttribute('class', "task-text");
-					var box = theLabel.getBBox();
-					var rect = paper.rect(box.x, box.y, box.width, box.height).attr('fill', 'black');
-					rect.node.setAttribute('class', 'text-box');
-					theLabel.toFront();
-					var st = paper.setFinish();
-
-					shape.data("label", st);
-
-					var hoverIn = function() {
-						this.animate({"fill-opacity": 0.9, fill: "#00BCD1", stroke: "#fff", "stroke-width": 20, "stroke-opacity": 0.7 }, 1000);
-						this.data("label").show();
-					};
-					var hoverOut = function() {
-						this.animate({"fill-opacity": 1, fill: "#fff", stroke: "#00BCD1", "stroke-width": size*1.1, "stroke-opacity": 1 }, 1000);
-						this.data("label").hide();
-					};
-					shape.data("label").hide();
-					shape.hover(hoverIn, hoverOut, shape, shape);
-					return shape;
-				};
-					
+				circ.node.setAttribute('class', "circle");				
 				circ = labelize(circ, circ.data('title'));
 				set.push(circ); 
 			}
@@ -184,7 +183,4 @@ angular.module('clientApp')
 		        y: centerY + radius * Math.sin(angle) 
 		    };
 		}
-		$( window ).resize(function() {
-		   console.log('resizing');
-		});
   });
