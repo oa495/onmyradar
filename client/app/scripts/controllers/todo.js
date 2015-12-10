@@ -69,4 +69,18 @@ angular.module('clientApp')
         $('.close').click(function() {
             $('.sidebar').hide();
         });
+        $('.show-add').click(function() {
+            if ($('.submit-form').css('display') === 'none') {
+                 $('.submit-form').show();
+            }
+            else {
+                $('.submit-form').hide(); 
+            }
+        });
+
+        $(window).resize(function() {
+           if( $(window).width() > 980){
+                $('.submit-form').show();
+            }  
+        });
   });

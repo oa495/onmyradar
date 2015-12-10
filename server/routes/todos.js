@@ -50,15 +50,20 @@ router.post('/todos', function(req, res) {
         req.user.todos.push(savedTodo._id);
         req.user.save(function(err, savedUser, count) {
             console.log('in save');
-            if (err)
-            res.send(err);
-
-            else 
-                User.findOne({username: req.body.username }, function(err, todos) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                 User.findOne({username: req.user.username})
+                .populate('todos').exec(function(err, user) {
+                    console.log("todos", user.todos);
+                    // if there is an error retrieving, send the error. nothing after res.send(err) will execute
                     if (err)
-                        res.send(err)
-                    res.json(todos);
-                 });
+                        res.sendStatus(401);
+
+                    res.json(user.todos); // return all todos in JSON format
+                });
+            } 
         })
     });
 });

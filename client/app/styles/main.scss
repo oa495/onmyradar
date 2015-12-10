@@ -1,4 +1,5 @@
 @import "variables";
+@import "media-queries";
 
 html, body {
 	margin: 0;
@@ -60,6 +61,7 @@ header {
 		clear: none;
 		top:0px;
 		margin-left: 0;
+		width: 80px;
 	}
 }
 body {
@@ -134,8 +136,8 @@ body {
 		float: right;
 	    width: 70%;
 	    div {
-	    	width: 80%;
-	    	margin-left: 15px;
+	    	width: 90%;
+	    	margin-left: 20px;
 	    }
 	    div > div {
 	        border-radius: 4px;
@@ -210,6 +212,21 @@ body {
 			margin-top: 10px;
 		}
 	}
+	.add-sidebar {
+		background-color: $green1;
+		position: absolute;
+		height: 100%;
+		width: 12%;
+		margin-left: 0;
+		margin-top: 0px;
+		top: 65px;
+		display: none;
+		img {
+			display: block;
+			margin: 0 auto;
+			margin-top: 25px;
+		}
+	}
 }
 #visualization {
 	width: 100%;
@@ -257,7 +274,42 @@ body {
   bottom: -8px;
   left: -8px;
 }
+@include mq($max-width: 480px) {
+	.auth {
+		width: 350px;
+	}
+}
 
-@media screen and (max-device-width: 320px) {
-  .sideb
+@include mq($max-width: 980px) {
+	.dashboard {
+		.submit-form {
+			display: none;
+			float: right;
+			width: 90%;
+   		}
+   		.list {
+   			width: 90%;
+   			.sidebar {
+   				width: 100%;
+   			}
+   		}
+	   .add-sidebar {
+	   		float: left;
+	   		display: block !important;
+	   }
+	}
+}
+@include mq($max-width: 1260px) {
+	.dashboard {
+		.submit-form {
+			input, select, form > label  {
+			    float: center;
+			}
+			input, select, label {
+				margin-top: 10px;
+				width: 80%;
+				margin-left: 15px;
+			}
+		}
+	}
 }

@@ -1,6 +1,6 @@
 <div class="dashboard">
     <section class="submit-form">
-        <div>
+        <div class="full-sidebar">
             <form name="taskinput" novalidate ng-submit="createTodo()">
                 <label>Title</label>
                 <input type="text" name="title" ng-model="formData.title" ng-minlength="3" ng-maxlength="15" required/>
@@ -31,6 +31,9 @@
                 <input type="submit" class="submit-button" ng-disabled="taskinput.$invalid" value="">
             </form>
         </div>
+    </section>
+    <section class="add-sidebar">
+        <img class="show-add" src="img/add121.png">
     </section>
     <section class="list">
         <div class="todos">

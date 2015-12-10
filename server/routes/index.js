@@ -51,5 +51,10 @@ router.get('/loggedin', function(req, res) {
   res.send(req.user != undefined ? req.user : '0'); 
 }); 
 
+router.get('/auth/logout', function(req, res){
+  console.log('logout');
+  req.logout();
+  res.send(200);
+});
 
 module.exports = router;
