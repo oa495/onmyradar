@@ -9,9 +9,11 @@
  */
 angular.module('clientApp')
   .service('userInfo', function ($window, $rootScope) {
+    //this service stores the user's data and authentication state with local storage. has functions to set & get the username and to get and set
+    //authentication state
  	angular.element($window).on('storage', function(event) {
 	    if (event.key === 'username' || event.key === 'userLoggedIn') {
-	      $rootScope.$apply();
+	      $rootScope.$apply(); //rootscope makes variables accessible everywhere
 	    }
       else {
         $rootScope = $rootScope.$new(true);
@@ -19,7 +21,6 @@ angular.module('clientApp')
 	});
   return {
     setUsername: function(val) {
-      console.log('setting data to ', val);
       $window.localStorage && $window.localStorage.setItem('username', val);
       return this;
     },
@@ -27,7 +28,6 @@ angular.module('clientApp')
       return $window.localStorage && $window.localStorage.getItem('username');
     },
     setLoggedIn: function(val) {
-      console.log('setting data to ', val);
       $window.localStorage && $window.localStorage.setItem('userLoggedIn', val);
       return this;
     },

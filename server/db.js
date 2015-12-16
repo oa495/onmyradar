@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
 
+/* schemassss
+	each user has a list of todos (which is made up of Todo)
+*/
 var User = new mongoose.Schema({
     todos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Todo' }]
 });

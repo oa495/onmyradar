@@ -18,7 +18,6 @@ router.post('/login', function(req,res,next) {
        res.json(req.user);
       });
     } else {
-        console.log('theres an error');
          res.sendStatus(401);
     }
   })(req, res, next);
@@ -28,19 +27,16 @@ router.post('/login', function(req,res,next) {
 });
 
 router.post('/register', function(req, res) {
-  console.log('in register');
   User.register(new User({username:req.body.username}), 
       req.body.password, function(err, user){
     if (err) {
       // NOTE: error? send message back to registration...
-      console.log('err1:', err);
       res.sendStatus(401);
       //res.render('register',{message:'Your username or password is already taken'});
     } else {
       // NOTE: once you've registered, you should be logged in automatically
       // ...so call authenticate if there's no error
       passport.authenticate('local')(req, res, function() {
-        console.log("registration success!");
         res.json(req.user);
       });
     }
@@ -48,11 +44,10 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/loggedin', function(req, res) { 
-  res.send(req.user != undefined ? req.user : '0'); 
+  res.send(req.user != undefined ? req.user : '0');  //check if a user has loggedin
 }); 
 
 router.get('/auth/logout', function(req, res){
-  console.log('logout');
   req.logout();
   res.send(200);
 });

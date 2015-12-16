@@ -65,7 +65,7 @@ angular
         }
       };
     });
-
+    /** resolve makes sure the user can access that page. for ex can only see radar if you are logged in */
     $routeProvider
       .when('/', {
         templateUrl: 'views/dashboard.html',

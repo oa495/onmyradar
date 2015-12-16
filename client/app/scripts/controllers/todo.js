@@ -10,20 +10,17 @@
 angular.module('clientApp')
   .controller('TodoCtrl', function ($scope, $http, Todos, $location) {
     $scope.formData = {};
-        $scope.loading = true;
 
         // GET =====================================================================
         // when landing on the page, get all todos and show them
         // use the service to get all the todos
         Todos.get()
             .error(function(err) {
-                console.log('error: ', err);
+                //if user is not signed in, redirect
                 $location.path('/signin');
             })
             .success(function(data) {
-                console.log("in todo.js, data: ", data);
                 $scope.todos = data;
-                $scope.loading = false;
             });
 
         // CREATE ==================================================================
@@ -59,7 +56,7 @@ angular.module('clientApp')
                     $scope.todos = data; // assign our new list of todos
                 });
         };
-
+        /* dom manipulation for sidebar */
         $scope.showSidebar = function(todo) {
             $scope.currentTodo = todo;
             if ($('.sidebar').css('display') === 'none') {
@@ -77,7 +74,6 @@ angular.module('clientApp')
                 $('.submit-form').hide(); 
             }
         });
-
         $(window).resize(function() {
            if( $(window).width() > 980){
                 $('.submit-form').show();

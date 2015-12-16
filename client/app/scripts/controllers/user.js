@@ -9,24 +9,23 @@
  */
 angular.module('clientApp')
   .controller('UserCtrl', function ($scope, $http, $location, $rootScope, userInfo) {
-	  	$scope.user  = {username:'',password:''};
+	  	$scope.user  = {username:'',password:''}; //stores info of user
 	    $scope.signinAlert = '';
 	    $scope.registerAlert = '';
 	    $scope.login = function(user){
-			if (user.username && user.password) {
-		    	console.log(user);
-		    	console.log('logging in');
+	    	//if both values were entered
+			if (user.username && user.password) { 
 		        $http.post('/login', user).
 		            success(function(data) {
+		            	//ayee logged in, store user data
 		                $rootScope.loggedUser = data;
 		                $rootScope.userSignedIn = true;
 		                userInfo.setUsername(data.username);
 		                userInfo.setLoggedIn(true);
-		                $location.path('/dashboard');
+		                $location.path('/dashboard'); //take them to their dashboard
 		            }).
 		            error(function(err) {
-		            	console.log('error: ', err);
-		            	console.log('login failed');
+		            	// :( they couldn't log in
 		                $scope.signinAlert = 'Incorrect username/password.';
 		            });
 		    }
@@ -38,12 +37,8 @@ angular.module('clientApp')
 	 
 	    $scope.signup = function(user){
 	    	if (user.username && user.password) {
-		    	console.log(user);
-		    	console.log('registering');
 		        $http.post('/register', user).
 		            success(function(data) {
-		            	console.log('SUCCESS');
-		            	console.log(data);
 		            	userInfo.setUsername(data.username);
 		            	$rootScope.userSignedIn = true;
 		                $location.path('/dashboard');

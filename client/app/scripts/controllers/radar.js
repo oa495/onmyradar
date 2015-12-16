@@ -14,15 +14,16 @@ angular.module('clientApp')
 		        var onejan = new Date(this.getFullYear(), 0, 1);
 		        return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
 		    };
-
-    		var weekNumber = (new Date()).getWeek();
+		    //get week of year
     		var now = new Date();
+    		var weekNumber = now.getWeek();
 			var dateSpace = document.getElementById('date-details');
 			var week = createElement('p', 'Week ' + weekNumber + '/52', {'class': 'date', 'id': 'week'});
 			var today = now.toDateString();
 			var date = createElement('p', today, {'class':'date'});
 			dateSpace.appendChild(week); 
 			dateSpace.appendChild(date); 
+			//add date and current week to page
 		}());
 
 	  	var to_dos = {}; //stores json data from the ajax call
@@ -57,12 +58,13 @@ angular.module('clientApp')
 					tasks: tempArray,
 					dayRadius: dayRadius,
 					taskCircles: []
-				};
-				tempArray = [];
+				}; //obj stores all the info needed (to draw to the screen) for a day of the week
+				tempArray = []; //clear array for next iteration
 			}
 			
 			startVisualization();
 		}
+		/* this function creates elements */
 		function createElement(element, text, attributes, child) {
 			var theElement;
 			if (element) {
@@ -86,31 +88,36 @@ angular.module('clientApp')
 		function startVisualization() {
 			 var w = $(window).width();
 			 var h =  $(window).height();
+			 //get size of screen
 			 paper = new Raphael(document.getElementById('visualization'), w, h);
 			 paper.setViewBox(0, 0, w, h, true);
 		     paper.setSize('100%', '100%');
+		     //make paper object responsive
 			 // dow = day of week
 			 	var centerX = w/2; //get center of page
 				var centerY = h/2; 
 				paper.circle(centerX, centerY, 20).attr({fill: "#00BCD1", stroke: "#ffffff"});
 			 for (var dow in allWeek) {
 				  if (allWeek.hasOwnProperty(dow)) {
+				  	//create circle for a day of the week with attributes
 				  	 allWeek.dayCircle = paper.circle(centerX, centerY, allWeek[dow].dayRadius).attr({stroke: "#ffffff", 'fill-opacity': 0.2, fill: "#00BCD1"});
-			   		if (allWeek[dow].tasks.length > 0) {
+			   		if (allWeek[dow].tasks.length > 0) { //only draw if there is at least one task
 			   			drawTaskCircles(dow, allWeek[dow].dayRadius, centerX, centerY);
-			   			checkForOverlap(allWeek[dow].taskCircles, allWeek[dow].dayRadius, centerX, centerY);
+			   			//checkForOverlap(allWeek[dow].taskCircles, allWeek[dow].dayRadius, centerX, centerY);
 			   		}
 			  	}
 			}
 		}
-
+		/** this method draws task circles to the screen */
 		function drawTaskCircles(dow, radius, centerX, centerY) {
 			var points;
 			var priority;
 			var tasksForDay = allWeek[dow].tasks;
 			allWeek[dow].taskCircles = [];
-			var set = paper.set();
-			var size;
+			var set = paper.set(); //store all circle objects for a dow so they can be changed all at once
+			var size; //size/radius of circle
+
+			/* creates label for the circle */
 			var labelize = function (shape, label) {
 				paper.setStart();
 				var theLabel = paper.text(shape.attr("cx")+ shape.attr('r')*6, shape.attr("cy"), " " + label + " ").attr({
@@ -139,22 +146,24 @@ angular.module('clientApp')
 			};
 
 			for (var i = 0; i < tasksForDay.length; i++) {
-				points = getRandomPoint(radius, centerX, centerY);
+				points = getRandomPoint(radius, centerX, centerY); //get point on ring
 				priority = tasksForDay[i].priority;
+				//get x & y coordinates
 				var x = points.x;
 				var y = points.y;
-				size = priority*4.5;
+				size = priority*4.5; //size depends on priority
 				var circ = paper.circle(x, y, size).data("title", tasksForDay[i].title);
 				circ.data("description", tasksForDay[i].description);
-				circ.node.setAttribute('class', "circle");				
-				circ = labelize(circ, circ.data('title'));
-				set.push(circ); 
+				circ.node.setAttribute('class', "circle");	//add attribute circle for styling			
+				circ = labelize(circ, circ.data('title')); //add label
+				set.push(circ); //add to set
 			}
 			set.attr({fill: "#ffffff", stroke: "#00BCD1", "stroke-width": size*1.1 });
 		    allWeek[dow].taskCircles = set;
-		    set = [];
+		    set = []; //empty set for next dow
 		}
 
+		/* this function checks if task circles are too close to each other and then moves them to a new position if true */
 		function checkForOverlap(circArr, radius, centerx, centery) {
 			for (var i = 0; i < circArr.length; i++) {
 				 var posX1 = circArr[i].attr("cx") || 0,
@@ -171,11 +180,12 @@ angular.module('clientApp')
 						var dx = Math.abs(position.x - posX2);
 						var dy = Math.abs(position.y - posY2);
 						circArr[j].translate(dx, dy);
-						checkForOverlap(circArr, radius, centerx, centery);
+						//checkForOverlap(circArr, radius, centerx, centery);
 					}
 				}
 			}
 		}	
+		/** get a random point around a circle given its center and radius */
 		function getRandomPoint(radius, centerX, centerY) {
 			var angle = Math.random() * Math.PI * 2;
 		    return {
