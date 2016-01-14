@@ -21,4 +21,4 @@ var Todo = new mongoose.Schema({
 User.plugin(passportLocalMongoose);
 mongoose.model('User', User);
 mongoose.model('Todo', Todo);
-mongoose.connect('mongodb://127.0.0.1/todos');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1/todos');
