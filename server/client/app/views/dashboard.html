@@ -1,0 +1,55 @@
+<div class="dashboard">
+    <section class="submit-form">
+        <div class="full-sidebar">
+            <form name="taskinput" novalidate ng-submit="createTodo()">
+                <label>Title</label>
+                <input type="text" name="title" ng-model="formData.title" ng-minlength="3" ng-maxlength="15" required/>
+                <div class="help-block" ng-show="taskinput.title.$error && taskinput.title.$touched">
+                    <small class="error" ng-show="taskinput.title.$error.required">Title is required.</small>
+                    <small class="error" ng-show="taskinput.title.$error.minlength">Title must be at least 3 characters.</small>
+                    <small class="error" ng-show="taskinput.title.$error.maxlength">Title can be at most 15 characters.</small>
+                </div>
+                <label>Priority</label>
+                <input type="number" name="priority" min="1" max="5" ng-model="formData.priority" required>
+                <div class="help-block" ng-show="taskinput.priority.$error && taskinput.priority.$touched">
+                    <small class="error" ng-show="taskinput.priority.$error.required">Priority is required.</small>
+                </div>
+                <label>Description</label><input type="text" ng-model="formData.description">
+                <label>Day of the Week</label>
+                <select ng-model="formData.dayOfWeek" name="dow" required>
+                  <option value="Monday" selected>Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                  <option value="Sunday">Sunday</option>
+                </select>
+                <div class="help-block" ng-show="taskinput.dow.$error && taskinput.dow.$touched">
+                    <small class="error" ng-show="taskinput.dow.$error.required">Day of week due is required.</small>
+                </div>
+                <input type="submit" class="submit-button" ng-disabled="taskinput.$invalid" value="">
+            </form>
+        </div>
+    </section>
+    <section class="add-sidebar">
+        <img class="show-add" src="img/add121.png">
+    </section>
+    <section class="list">
+        <div class="todos">
+            <div class="checkbox" ng-repeat="todo in todos" ng-click="showSidebar(todo)">
+                <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.title }}
+            </div>
+            <a href="#/radar"><button class="hvr-outline-out">Visualize</button></a>
+        </div>
+        <section class="sidebar">
+            <img class="close" src="img/close33.png">
+            <div class="details">
+                <div>Title: {{currentTodo.title}}</div>
+                <div>Priority: {{currentTodo.priority}}</div>
+                <div>Description: {{currentTodo.description}}</div>
+                <div>Day Of Week: {{currentTodo.dayOfWeek}}</div>
+            </div>
+        </section>
+    </section>
+</div>
