@@ -1,0 +1,373 @@
+/* line 4, ../../app/styles/main.scss */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* line 9, ../../app/styles/main.scss */
+h1 {
+  font-family: "Lato", sans-serif;
+  font-size: 64px;
+}
+
+/* line 13, ../../app/styles/main.scss */
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 17, ../../app/styles/main.scss */
+button {
+  background-color: #F8F8F8;
+  clear: both;
+  position: relative;
+  top: 50px;
+  cursor: pointer;
+  border: 8px solid white;
+  width: 120px;
+  height: 50px;
+  margin-left: 35%;
+  font-size: 12px;
+  color: black;
+  font-family: "Lato", sans-serif;
+}
+
+/* line 31, ../../app/styles/main.scss */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+/* line 34, ../../app/styles/main.scss */
+input:focus {
+  outline: none;
+}
+
+/* line 37, ../../app/styles/main.scss */
+header {
+  padding-bottom: 15px;
+  background-color: white;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+}
+/* line 44, ../../app/styles/main.scss */
+header img, header h2, header p, header button {
+  display: inline-block;
+  position: relative;
+  padding: 2px;
+}
+/* line 49, ../../app/styles/main.scss */
+header .left {
+  margin-left: 10px;
+  float: left;
+}
+/* line 53, ../../app/styles/main.scss */
+header .right {
+  float: right;
+  margin-right: 20px;
+}
+/* line 57, ../../app/styles/main.scss */
+header div > img {
+  top: 10px;
+}
+/* line 60, ../../app/styles/main.scss */
+header button {
+  clear: none;
+  top: 0px;
+  margin-left: 0;
+  width: 80px;
+}
+
+/* line 67, ../../app/styles/main.scss */
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #F8F8F8;
+}
+
+/* line 71, ../../app/styles/main.scss */
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 75, ../../app/styles/main.scss */
+.auth {
+  width: 450px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+  background-color: #3FB8AF;
+}
+/* line 81, ../../app/styles/main.scss */
+.auth h3 {
+  background-color: #00BCD1;
+  height: 45px;
+  font-size: 20px;
+  padding-top: 10px;
+}
+/* line 87, ../../app/styles/main.scss */
+.auth h3, .auth p {
+  text-align: center;
+}
+/* line 90, ../../app/styles/main.scss */
+.auth small {
+  text-align: center;
+  color: white;
+  width: 100%;
+  display: inline-block;
+  margin: 0 auto;
+}
+/* line 97, ../../app/styles/main.scss */
+.auth p {
+  color: white;
+  padding-top: 20px;
+  cursor: pointer;
+}
+/* line 102, ../../app/styles/main.scss */
+.auth p:hover {
+  opacity: 0.8;
+}
+/* line 105, ../../app/styles/main.scss */
+.auth .signup {
+  display: none;
+}
+/* line 109, ../../app/styles/main.scss */
+.auth form div {
+  padding: 15px;
+}
+/* line 112, ../../app/styles/main.scss */
+.auth form input {
+  height: 50px;
+  display: block;
+  width: 85%;
+  margin: 0 auto;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+}
+/* line 120, ../../app/styles/main.scss */
+.auth form button {
+  top: 20px;
+}
+
+/* line 125, ../../app/styles/main.scss */
+.dashboard {
+  height: 100vh;
+}
+/* line 127, ../../app/styles/main.scss */
+.dashboard .list, .dashboard .submit-form {
+  height: inherit;
+}
+/* line 130, ../../app/styles/main.scss */
+.dashboard section > div {
+  margin-top: 150px;
+  margin-left: 2%;
+}
+/* line 134, ../../app/styles/main.scss */
+.dashboard .list {
+  background-color: #00BCD1;
+  float: right;
+  width: 70%;
+}
+/* line 138, ../../app/styles/main.scss */
+.dashboard .list div {
+  width: 90%;
+  margin-left: 20px;
+}
+/* line 142, ../../app/styles/main.scss */
+.dashboard .list div > div {
+  border-radius: 4px;
+  width: inherit;
+  height: 40px;
+  text-transform: capitalize;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 5px;
+}
+/* line 150, ../../app/styles/main.scss */
+.dashboard .list .checkbox > input {
+  display: inline-block;
+  margin-top: 12px;
+  margin-left: 10px;
+}
+/* line 155, ../../app/styles/main.scss */
+.dashboard .list .checkbox:hover {
+  opacity: 0.8;
+}
+/* line 158, ../../app/styles/main.scss */
+.dashboard .list .todos {
+  float: left;
+}
+/* line 161, ../../app/styles/main.scss */
+.dashboard .list .sidebar {
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  background-color: #F8F8F8;
+  right: 0px;
+  margin-top: 65px;
+  display: none;
+}
+/* line 169, ../../app/styles/main.scss */
+.dashboard .list .sidebar .details {
+  margin-top: 40px;
+}
+/* line 172, ../../app/styles/main.scss */
+.dashboard .list .sidebar .details > div {
+  margin-top: 10px;
+  background-color: transparent;
+  background: transparent;
+}
+/* line 177, ../../app/styles/main.scss */
+.dashboard .list .sidebar img {
+  float: right;
+  padding: 10px;
+}
+/* line 183, ../../app/styles/main.scss */
+.dashboard .submit-form {
+  float: left;
+  width: 30%;
+}
+/* line 186, ../../app/styles/main.scss */
+.dashboard .submit-form form > label {
+  width: 130px;
+  text-align: left;
+  clear: both;
+  float: left;
+  margin-left: 15px;
+  height: 30px;
+}
+/* line 194, ../../app/styles/main.scss */
+.dashboard .submit-form input, .dashboard .submit-form select {
+  height: 20px;
+  width: 220px;
+  float: left;
+}
+/* line 199, ../../app/styles/main.scss */
+.dashboard .submit-form .submit-button {
+  clear: both;
+  display: block;
+  position: relative;
+  top: 50px;
+  background: url(/img/add121.png) no-repeat;
+  cursor: pointer;
+  border: none;
+  width: 100px;
+  height: 100px;
+  margin-left: 45%;
+}
+/* line 211, ../../app/styles/main.scss */
+.dashboard .submit-form input, .dashboard .submit-form select, .dashboard .submit-form label {
+  margin-top: 10px;
+}
+/* line 215, ../../app/styles/main.scss */
+.dashboard .add-sidebar {
+  background-color: #3FB8AF;
+  position: absolute;
+  height: 100%;
+  width: 12%;
+  margin-left: 0;
+  margin-top: 0px;
+  top: 65px;
+  display: none;
+}
+/* line 224, ../../app/styles/main.scss */
+.dashboard .add-sidebar img {
+  display: block;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+/* line 231, ../../app/styles/main.scss */
+#visualization {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+/* line 236, ../../app/styles/main.scss */
+.help-block {
+  width: 130px;
+  margin-left: 15px;
+}
+
+/* line 240, ../../app/styles/main.scss */
+.help-block > small {
+  display: inline;
+  height: 20px;
+  clear: both;
+  color: red;
+}
+
+/* line 247, ../../app/styles/main.scss */
+.hvr-outline-out {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* line 258, ../../app/styles/main.scss */
+.hvr-outline-out:before {
+  content: '';
+  position: absolute;
+  border: #3FB8AF solid 4px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition-duration: 0.3s;
+  transition-property: top, right, bottom, left;
+}
+
+/* line 271, ../../app/styles/main.scss */
+.hvr-outline-out:hover:before, .hvr-outline-out:focus:before, .hvr-outline-out:active:before {
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+}
+
+@media only screen and (max-width: 480px) {
+  /* line 278, ../../app/styles/main.scss */
+  .auth {
+    width: 350px;
+  }
+}
+@media only screen and (max-width: 980px) {
+  /* line 285, ../../app/styles/main.scss */
+  .dashboard .submit-form {
+    display: none;
+    float: right;
+    width: 90%;
+  }
+  /* line 290, ../../app/styles/main.scss */
+  .dashboard .list {
+    width: 90%;
+  }
+  /* line 292, ../../app/styles/main.scss */
+  .dashboard .list .sidebar {
+    width: 100%;
+  }
+  /* line 296, ../../app/styles/main.scss */
+  .dashboard .add-sidebar {
+    float: left;
+    display: block !important;
+  }
+}
+@media only screen and (max-width: 1260px) {
+  /* line 305, ../../app/styles/main.scss */
+  .dashboard .submit-form input, .dashboard .submit-form select, .dashboard .submit-form form > label {
+    float: center;
+  }
+  /* line 308, ../../app/styles/main.scss */
+  .dashboard .submit-form input, .dashboard .submit-form select, .dashboard .submit-form label {
+    margin-top: 10px;
+    width: 80%;
+    margin-left: 15px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
