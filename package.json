@@ -1,10 +1,11 @@
 {
   "name": "server",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
+  "main": "app.js"
   "scripts": {
-    "start": "node app.js",
-    "test": "NODE_ENV=development nodemon ./bin/www"
+    "start": "NODE_ENV=production node ./bin/www",
+    "test": "NODE_ENV=development node ./bin/www"
   },
   "engines": {
      "node": "4.2.2"
