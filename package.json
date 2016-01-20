@@ -4,7 +4,7 @@
   "private": false,
   "main": "app.js",
   "scripts": {
-    "postinstall": "cd client && bower install && npm install && grunt build",
+    "postinstall": "cd client && bower install && npm install",
     "start": "NODE_ENV=production node ./bin/www",
     "test": "NODE_ENV=development node ./bin/www"
   },
