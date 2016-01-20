@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": false,
   "main": "app.js",
+
   "scripts": {
+    "postinstall": "bower install && grunt build",
     "start": "NODE_ENV=production node ./bin/www",
     "test": "NODE_ENV=development node ./bin/www"
   },
