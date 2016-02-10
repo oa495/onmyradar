@@ -1,6 +1,6 @@
 ### onmyradar
 
-Data visualisation of your daily/weekly schedule. Build using MEAN stack, Passport for authentication and RapahelJS for visualisation.
+Visualisation of your daily/weekly schedule. BuilT using MEAN stack, Passport for authentication and RapahelJS for visualisation.
 
 ## You need:
   - Node.js - [Download](https://nodejs.org/en/)
