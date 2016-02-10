@@ -28,7 +28,7 @@ angular.module('clientApp')
 
 	  	var to_dos = {}; //stores json data from the ajax call
 		var allWeek = {};  //objects that represents everything in a week
-		var daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+		var daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'everyday'];
 		var paper;
 		var tasksForWeek; //storing all the tasks for the week
 		//paper is the object rapahel uses to draw to the screen
@@ -45,7 +45,7 @@ angular.module('clientApp')
 			tasksForWeek = to_dos;
 			var dayRadius = 400; 
 			function getTasksForDOW(obj) {
-				if ((obj.dayOfWeek).toLowerCase() === daysOfWeek[i]) {
+				if ((obj.dayOfWeek).toLowerCase() === daysOfWeek[i] || obj.dayOfWeek.toLowerCase() == 'everyday') {
 						return obj;
 				}
 			}
