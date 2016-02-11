@@ -28,7 +28,7 @@ angular.module('clientApp')
 
 	  	var to_dos = {}; //stores json data from the ajax call
 		var allWeek = {};  //objects that represents everything in a week
-		var daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'everyday'];
+		var daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 		var paper;
 		var tasksForWeek; //storing all the tasks for the week
 		//paper is the object rapahel uses to draw to the screen
