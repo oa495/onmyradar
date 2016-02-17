@@ -103,7 +103,7 @@ angular.module('clientApp')
 				  	 allWeek.dayCircle = paper.circle(centerX, centerY, allWeek[dow].dayRadius).attr({stroke: "#ffffff", 'fill-opacity': 0.2, fill: "#00BCD1"});
 			   		if (allWeek[dow].tasks.length > 0) { //only draw if there is at least one task
 			   			drawTaskCircles(dow, allWeek[dow].dayRadius, centerX, centerY);
-			   			//checkForOverlap(allWeek[dow].taskCircles, allWeek[dow].dayRadius, centerX, centerY);
+			   			checkForOverlap(allWeek[dow].taskCircles, allWeek[dow].dayRadius, centerX, centerY);
 			   		}
 			  	}
 			}
@@ -169,18 +169,20 @@ angular.module('clientApp')
 				 var posX1 = circArr[i].attr("cx") || 0,
             	 posY1 = circArr[i].attr("cy") || 0;
             	 var r1 = circArr[i].attr("r") || 0;
-				for (var j = 1; j < circArr.length; j++) {
-					var posX2 = circArr[j].attr("cx") || 0,
-            		posY2 = circArr[j].attr("cy") || 0,
-            		r2 = circArr[j].attr("r") || 0;
-					var distance = Math.sqrt(((posX2 - posX1)*(posX2 - posX1)) + ((posY2 - posY1)* (posY2 - posY1)) - (r2 + r1));
-					if (distance < 25) {
-						console.log('distance too small');
-						var position = getRandomPoint(radius, centerx, centery);
-						var dx = Math.abs(position.x - posX2);
-						var dy = Math.abs(position.y - posY2);
-						circArr[j].translate(dx, dy);
-						//checkForOverlap(circArr, radius, centerx, centery);
+				for (var j = 0; j < circArr.length; j++) {
+					if (j !== i) {
+						var posX2 = circArr[j].attr("cx") || 0,
+	            		posY2 = circArr[j].attr("cy") || 0,
+	            		r2 = circArr[j].attr("r") || 0;
+						var distance = Math.sqrt(((posX2 - posX1)*(posX2 - posX1)) + ((posY2 - posY1)* (posY2 - posY1)) - (r2 + r1));
+						while (distance < 20) {
+							var position = getRandomPoint(radius, centerx, centery);
+							var dx = Math.abs(position.x - posX2);
+							var dy = Math.abs(position.y - posY2);
+							circArr[j].translate(dx, dy);
+							console.log('too small');
+							distance = Math.sqrt(((circArr[j].attr("cx") || 0 - posX1)*(circArr[j].attr("cx") || 0 - posX1)) + ((circArr[j].attr("cy") || 0 - posY1)* (circArr[j].attr("cy") || 0 - posY1)) - (r2 + r1));
+						}
 					}
 				}
 			}
