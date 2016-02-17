@@ -488,7 +488,7 @@ module.exports = function (grunt) {
     'connect:test',
     'karma'
   ]);
-
+   
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
@@ -503,8 +503,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'filerev',
-    'usemin',
-    'htmlmin'
+    'usemin'
   ]);
 
   grunt.registerTask('default', [
